@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>tarefas</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,100&display=swap");
+      body {
+        background: rgb(2, 0, 36);
+        background: linear-gradient(
+          90deg,
+          rgba(2, 0, 36, 1) 0%,
+          rgba(33, 33, 185, 1) 49%,
+          rgba(0, 212, 255, 1) 100%
+        );
+        font-family: "Roboto", sans-serif;
+
+        display: flex;
+        justify-content: center;
+      }
+
+      .board {
+        background-color: rgba(255, 255, 255, 0.9);
+        width: 320px;
+        margin: 4px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      h3 {
+        background-color: rgba(17, 17, 116);
+        text-align: center;
+        color: white;
+        margin: 0px;
+        font-size: 24px;
+        font-weight: 400;
+      }
+      .add-card {
+        background-color: rgba(200, 200, 200, 0.8);
+        margin: 4px;
+        border-radius: 4px;
+      }
+
+      .add-card:hover {
+        cursor: pointer;
+      }
+
+      .add-card p {
+        font-size: 16px;
+        padding: 0px 6px;
+        font-weight: 100;
+      }
+
+      ul {
+        list-style-type: none;
+        min-height: 300px;
+        padding: 2px;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+      }
+
+      li {
+        background-color: white;
+        box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        min-width: 100px;
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        margin: 4px 10px;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        box-shadow: 2px 2px rgba(0, 0, 0, 0.4);
+      }
+
+      li:hover {
+        cursor: move;
+      }
+
+      .remove {
+        color: gray;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 12px;
+      }
+
+      .remove:hover {
+        cursor: pointer;
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="board">
+      <h3>A fazer.</h3>
+
+      <ul id="to do">
+        <li>
+          <p>dormir</p>
+          <p class="remove">x</p>
+        </li>
+
+        <li>
+          <p>assistir OP</p>
+          <p class="remove">x</p>
+        </li>
+      </ul>
+
+      <div class="add-card" onclick="addCard(this)">
+        <p>adicionar tarefa</p>
+      </div>
+    </div>
+
+    <div class="board">
+      <h3>Fazendo...</h3>
+
+      <ul id="to do"></ul>
+
+      <div class="add-card" onclick="addCard(this)">
+        <p>adicionar tarefa</p>
+      </div>
+    </div>
+
+    <div class="board">
+      <h3>Feito!</h3>
+
+      <ul id="to do"></ul>
+
+      <div class="add-card" onclick="addCard(this)">
+        <p>adicionar tarefa</p>
+      </div>
+    </div>
+
+    <script>
+      function addCard(elemento) {
+        const ulId = elemento.previousElementSibling.id;
+        const text = prompt("qual é a tarefa?");
+        const board = document.getElementById(ulId);
+        console.log(board);
+
+        const template = `
+        <li>
+          <p>${text}</p>
+          <p class="remove">x</p>
+        </li>
+        `;
+
+        board.innerHTML = board.innerHTML + template;
+      }
+    </script>
+  </body>
+</html>
